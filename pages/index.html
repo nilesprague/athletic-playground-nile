@@ -1,0 +1,109 @@
+{# ------------------------------------------------------- #}
+
+{# YOUR HOMEPAGE #}
+
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+
+{# ------------------------------------------------------- #}
+
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+
+{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
+{% block title %}{% parent %} - Homepage{% endblock %}
+
+{% block content %}
+
+  <!-- Begin the main page content -->
+    <main role="main">
+      <!-- Begin the hero slider -->
+      <!-- This will be a carousel with no controls, this seems like the best option: https://kenwheeler.github.io/slick/ -->
+      <div class="photo-slider">
+        <div class="photo-slider__container">
+          <img src="/static/images/DSC02020.jpg" class="photo-slider__image" alt=""> </div>
+      </div>
+      <!-- End the hero slider -->
+      <!-- Begin the announcement block -->
+      <!-- Perhaps in the first iteration this will be simply the latest blog entry pulled from the blog, linking to the entry in the blog. In the futuer maybe this will be a slider/fader rotating the latest 3 entries. Another option would be to have it be a custom content type not pulling from the blog but entered via its own field in the CMS -->
+      <div class="news-bar">
+        <a href="#" class="news-bar__anchor">
+          <!-- <span class="news-bar__label">Latest</span> -->
+          <span class="octicon octicon-star news-bar__star-icon"></span>
+          <br class="break-for-small">
+          <span class="news-bar__text">Get your ticket for Playground After Dark this Saturday</span>
+          <br class="break-for-small">
+          <span class="news-bar__read-more">read more</span>
+          <!-- <span class="octicon octicon-chevron-right"></span> -->
+        </a>
+      </div>
+      <!-- End the announement block -->
+      <!-- Begin the site intro -->
+      <div class="intro-pitch">
+        <div class="wrap">
+          <section class="intro">
+            <h2 class="intro__heading">A Home for Your Movement Practice</h2>
+            <p class="intro__paragraph">Athletic Playground is a movement training facility accommodating a wide range of physical disciplines. We teach handstands, acroyoga, parkour, aerial, conditioning, flexibility, and more — to adults and kids.</p>
+            <!-- <a class="intro__movie-anchor" href="">Watch our movie (60 sec.)</a> -->
+            <div class="intro__video">
+              <iframe src="https://player.vimeo.com/video/119830797?color=faf8f6&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+          </section>
+          <!-- End the intro -->
+          <!-- Begin the pitch -->
+          <section class="pitch">
+            <section class="pitch-item">
+              <h3 class="pitch-item__heading">100+ sessions every week</h3>
+              <p class="pitch-item__paragraph">Whether you're seeking well-structured classes, a friendly space to practice your skills, or in-depth workshops, chances you can find it at Athletic Playground.</p>
+            </section>
+            <section class="pitch-item">
+              <h3 class="pitch-item__heading">Playful movement training</h3>
+              <p class="pitch-item__paragraph">We take an approach to movement that goes way beyond exercises, sets, and reps. Focusing on the pleasure of what you're doing means your mind is on the fun.</p>
+            </section>
+            <section class="pitch-item">
+              <h3 class="pitch-item__heading">Accessible to everyone</h3>
+              <p class="pitch-item__paragraph">Whatever your current level of physical ability, we're here to equip you with the resources you need to feel stronger, happier, and more at ease in your body in daily life.</p>
+            </section>
+          </section>
+        </div>
+      </div>
+      <!-- End the pitch -->
+      <!-- Begin the 'learn more' section -->
+      <section class="learn-more">
+        <div class="wrap">
+          <h2 class="learn-more__heading">Want to learn more?</h2>
+          <p class="learn-more__paragraph">Read about <a href="">our facility, and approach to teaching</a> · View our <a href="">full list of offerings</a> · Learn about <a href="">how to get started</a> · See our <a href="">full weekly schedule</a> of classes, workshops, and open play
+            · <a href="">Visit our blog</a> to see what's new</p>
+          <!-- <p class="learn-more__paragraph">Read about <a href="">our history, facility, and approach to teaching</a>
+          </p>
+          <p>View our full list of <a href="">offerings for adults and kids</a>
+          </p>
+          <p>Learn about <a href="">how to get started</a>
+          </p>
+          <p>See our <a href="">full weekly schedule</a> of classes, workshops, and open play.</p>
+          <p> <a href="">Visit our blog</a> to see what's new.</p>
+          <p>We look forward to seeing you at the playground!</p> -->
+        </div>
+      </section>
+      <!-- End the 'learn more' section -->
+    </main>
+    <!-- End the main page content -->
+
+  {# If you have at least content page type, we show a list. #}
+  {% if cms_types|size !== 0 %}
+
+    <h3>Content types you've created in the CMS so far.</h3>
+
+    <ul>
+    {% for type in cms_types %}
+      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+  {% endif %}
+
+{% endblock %}
