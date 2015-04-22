@@ -1,0 +1,29 @@
+{# ------------------------------------------------------- #}
+{# ONE OFF VIEW home #}
+{# This page can use any data from http:localhost:2000/cms/#/form/home/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this home's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ cms.home.name }}{% endblock %}
+{% block content %}
+       <!-- Begin the announcement block -->
+      <!-- Perhaps in the first iteration this will be simply the latest blog entry pulled from the blog, linking to the entry in the blog. In the futuer maybe this will be a slider/fader rotating the latest 3 entries. Another option would be to have it be a custom content type not pulling from the blog but entered via its own field in the CMS -->
+      <div class="news-bar">
+        <a href="{{ cms.home.news_bar_url }}" class="news-bar__anchor">
+          <!-- <span class="news-bar__label">Latest</span> -->
+          <span class="octicon octicon-star news-bar__star-icon"></span>
+          <br class="break-for-small">
+          <span class="news-bar__text">{{ cms.home.news_bar }}</span>
+          <br class="break-for-small">
+          <span class="news-bar__read-more">read more</span>
+          <!-- <span class="octicon octicon-chevron-right"></span> -->
+        </a>
+      </div>
+      <!-- End the announement block --> 
+{% endblock %}
